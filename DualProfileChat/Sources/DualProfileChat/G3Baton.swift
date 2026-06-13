@@ -18,6 +18,14 @@ import Foundation
 import FoundationModels
 
 /// One shared-transcript session whose active model follows `router`.
+///
+/// Both bundles are Qwen3 thinking models, so the expert profile budgets for reasoning:
+/// the 4B answering "prove √2 is irrational" spends ~360 tokens inside `<think>` before the
+/// proof, so its `maximumResponseTokens` is 1024 (at the original 384 the answer was
+/// truncated mid-word — measured on device). The fast profile keeps a tight 192 since its
+/// turns are short. NB: Qwen3's `/no_think` soft switch is NOT a usable mitigation here —
+/// on these kit bundles it makes even the 0.6B emit content the framework can't decode
+/// (GenerationError.decodingFailure), so giving thinking room is the reliable fix.
 struct BatonProfile: LanguageModelSession.DynamicProfile {
     let router: Router
     let fast: KitLanguageModel
@@ -31,7 +39,7 @@ struct BatonProfile: LanguageModelSession.DynamicProfile {
                     + "[EXPERT]. Answer thoroughly but in at most 6 sentences.")
             }
             .model(smart)
-            .maximumResponseTokens(384)
+            .maximumResponseTokens(1024)
         } else {
             Profile {
                 Instructions(
