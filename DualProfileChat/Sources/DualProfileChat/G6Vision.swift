@@ -7,8 +7,8 @@
 // `.structure` segments and DROPS `.image`. So the VL model is invoked but receives no
 // pixels through the kit path — it answers from text alone. True image understanding
 // needs an own executor that feeds the bundle's vision encoder (the qwen3_vl `*_vision`
-// bundle) and splices image embeddings into the prompt — a FOR-ORCHESTRATOR ask on kit,
-// out of this session's write scope. This gate therefore verifies the routing decision
+// bundle) and splices image embeddings into the prompt — a change in coreai-kit,
+// outside this repo. This gate therefore verifies the routing decision
 // and records the rendering gap as the remaining work.
 
 import CoreAIKit
