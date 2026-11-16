@@ -1,12 +1,12 @@
 {
-  "originHash" : "ff840fd439b2d2c19526d0397f9461eb0796cf5fd33f00b7fb52d056de7d3f8e",
+  "originHash" : "df0a1db49f9e193ffce182d4a14ac1572471743e788404e82b0e9018b82a518a",
   "pins" : [
     {
       "identity" : "coreai-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/john-rocky/coreai-kit",
       "state" : {
-        "revision" : "3a9520309d3e01d89c4a08ea35b0cdbbb08088bc"
+        "revision" : "d18bb42f169a553b8aae7d524966a25b301c3a8a"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/john-rocky/coreai-models",
       "state" : {
-        "revision" : "9e5b605d3b93b9ef9909c1074fcaba1929a00653",
-        "version" : "0.1.0-zoo"
+        "revision" : "6be53a54420ead84b35714178cce434a54c5da45",
+        "version" : "0.2.9-zoo"
       }
     },
     {
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/huggingface/swift-huggingface.git",
       "state" : {
-        "revision" : "b721959445b617d0bf03910b2b4aced345fd93bf",
-        "version" : "0.9.0"
+        "revision" : "f0a0cb43cb1b402d2bbf6fb10d8981328c449c48",
+        "version" : "0.13.0"
       }
     },
     {
@@ -106,6 +106,15 @@
       "state" : {
         "revision" : "2fa33e1f5e7131a7fc64c28e6d161dcec0d24820",
         "version" : "1.3.3"
+      }
+    },
+    {
+      "identity" : "xgrammar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mlc-ai/xgrammar",
+      "state" : {
+        "revision" : "4d145cc13d878c751ebeed36af1c013074be76bc",
+        "version" : "0.2.2"
       }
     },
     {

@@ -6,11 +6,11 @@ let package = Package(
     platforms: [.macOS("27.0")],
     dependencies: [
         // coreai-kit pulls in its patched coreai-models fork transitively, so a clean
-        // external `swift run` resolves the whole chain. Pinned to an exact revision for
-        // reproducibility (coreai-kit is not tagged yet).
+        // external `swift run` resolves the whole chain. It uses an exact revision for
+        // reproducibility.
         .package(
             url: "https://github.com/john-rocky/coreai-kit",
-            revision: "3a9520309d3e01d89c4a08ea35b0cdbbb08088bc"
+            revision: "d18bb42f169a553b8aae7d524966a25b301c3a8a"
         )
     ],
     targets: [

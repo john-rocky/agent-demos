@@ -181,7 +181,7 @@ enum G5Lifecycle {
 
 struct SummarizingProfile: LanguageModelSession.DynamicProfile {
     @SessionProperty(\.runningSummary) var summary: String
-    @SessionProperty(\.history) var history: ArraySlice<Transcript.Entry>
+    @SessionProperty(\.history) var history: Transcript.HistoryView
 
     let model: KitLanguageModel
 
