@@ -157,6 +157,6 @@ enum G6Vision {
                 + "image answered by smart=\(imageProducedBySmart). "
                 + "VL-load blocker: \(vlBlocker). "
                 + "NOTE: kit renderer drops image pixels — true vision needs an own executor "
-                + "+ vision encoder (FOR-ORCHESTRATOR).")
+                + "+ vision encoder.")
     }
 }
