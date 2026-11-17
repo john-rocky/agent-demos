@@ -19,7 +19,7 @@ swift run -c release DualProfileChat <gate> [--fast <bundle>] [--smart <bundle>]
 
 `<gate>` is one of:
 
-| gate | shows |
+| `<gate>` | shows |
 |---|---|
 | `g1` | `DynamicProfile` sanity on `SystemLanguageModel` (needs Apple Intelligence) |
 | `g2` | small↔big switch via `.model`; switch latency, re-prefill, two-model memory |
@@ -38,9 +38,12 @@ bundle directory or a `catalog:<hf-repo>` id; defaults are the catalog models ab
 - Routing decisions are made with **guided generation** (a constrained boolean classification
   on the sequential engine), not a tool the model calls: tool-call output from small/thinking
   models is rejected by the framework with `GenerationError.decodingFailure` on the kit's
-  upstream engine. See `DUAL_PROFILE_STATE.md` for the full list of engine limitations the
-  gates are designed around.
-- `g6` proves the **routing decision** end-to-end and that the image segment reaches the FM
-  transcript; the kit's renderer does not tokenize image pixels and VL *decode* bundles cannot
-  load through the generic `KitLanguageModel`, so true image understanding needs an own
-  executor wired to the vision encoder.
+  upstream engine.
+- `g6` checks routing by modality: a text-only prompt should stay on the fast model, and a
+  prompt that carries an image should go to the vision profile. On the macOS 27 SDK the text
+  turn is answered by the fast model. For the image turn the demo selects the vision profile,
+  and the framework then refuses the prompt with `LanguageModelError.unsupportedCapability`
+  (`.vision`), which the demo prints as "The model doesn't support the requested capability."
+  Both profiles in `g6` use `KitLanguageModel`, which does not declare the vision capability.
+  The image turn therefore gets no answer, the image prompt is not added to the session
+  transcript, and the run reports `G6 PARTIAL`.

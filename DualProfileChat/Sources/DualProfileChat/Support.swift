@@ -161,7 +161,7 @@ func responseProducer(of entries: some Sequence<Transcript.Entry>) -> String? {
     var producer: String?
     for entry in entries {
         if case .response(let response) = entry,
-            let id = response.metadata["modelID"] as? String
+            let id = try? response.metadata["modelID"]?.value(String.self)
         {
             producer = id
         }
@@ -202,7 +202,7 @@ func describe(_ entry: Transcript.Entry) -> String {
     case .toolCalls(let calls): return "toolCalls(\(calls.map(\.toolName).joined(separator: ",")))"
     case .toolOutput: return "toolOutput"
     case .response(let response):
-        if let id = response.metadata["modelID"] as? String {
+        if let id = try? response.metadata["modelID"]?.value(String.self) {
             return "response[\(modelLabel(forID: id))]"
         }
         return "response"
